@@ -10,7 +10,7 @@ from decouple import config
 style.use('ggplot')
 
 quandl_key = config('Q_KEY')
-print(quandl_key)
+
 
 autos = ['F', 'HMC', 'TM', 'TTM', 'PAG', 'GM', 'OSK', 'FCAU']
 
@@ -34,14 +34,14 @@ def get_auto_prices(autos, plot=True, save=False):
 
 def get_steel():
     shanghai_steel1 = \
-        quandl.get("CHRIS/SHFE_RB1", authtoken="-h4jm8-epYp2YfshRaBA")
+        quandl.get("CHRIS/SHFE_RB1", authtoken=quandl_key)
     shanghai_steel2 = \
-        quandl.get("CHRIS/SHFE_WR2", authtoken="-h4jm8-epYp2YfshRaBA")
+        quandl.get("CHRIS/SHFE_WR2", authtoken=quandl_key)
 
     american_steel1 = \
-        quandl.get("CHRIS/CME_HR1", authtoken="-h4jm8-epYp2YfshRaBA")
+        quandl.get("CHRIS/CME_HR1", authtoken=quandl_key)
     american_steel2 = \
-        quandl.get("CHRIS/CME_HR2", authtoken="-h4jm8-epYp2YfshRaBA")
+        quandl.get("CHRIS/CME_HR2", authtoken=quandl_key)
 
     steel_list = [shanghai_steel1, shanghai_steel2,
                   american_steel1, american_steel2]
@@ -63,16 +63,16 @@ def get_steel():
 
 
 def get_palladium():
-    palladium = quandl.get("LPPM/PALL", authtoken="-h4jm8-epYp2YfshRaBA")
+    palladium = quandl.get("LPPM/PALL", authtoken=quandl_key)
     price = palladium['USD AM']
     return price
 
 
 def get_rubber():
-    indo = quandl.get("CHRIS/SGX_IR1", authtoken="-h4jm8-epYp2YfshRaBA")
-    malay = quandl.get("CHRIS/SGX_IR1", authtoken="-h4jm8-epYp2YfshRaBA")
-    thai = quandl.get("CHRIS/SGX_TR1", authtoken="-h4jm8-epYp2YfshRaBA")
-    # hk = quandl.get("HKEX/06865", authtoken="-h4jm8-epYp2YfshRaBA")
+    indo = quandl.get("CHRIS/SGX_IR1", authtoken=quandl_key)
+    malay = quandl.get("CHRIS/SGX_IR1", authtoken=quandl_key)
+    thai = quandl.get("CHRIS/SGX_TR1", authtoken=quandl_key)
+    # hk = quandl.get("HKEX/06865", authtoken=quandl_key)
     producers = [indo, malay, thai]
     df_list = []
     for prod in producers:
@@ -84,13 +84,13 @@ def get_rubber():
 
 
 def get_copper():
-    copper = quandl.get("CHRIS/MCX_CU1", authtoken="-h4jm8-epYp2YfshRaBA")
+    copper = quandl.get("CHRIS/MCX_CU1", authtoken=quandl_key)
     close = copper['Close']
     return close
 
 
 def get_aluminum():
-    aluminum = quandl.get("CHRIS/SHFE_AL1", authtoken="-h4jm8-epYp2YfshRaBA")
+    aluminum = quandl.get("CHRIS/SHFE_AL1", authtoken=quandl_key)
     close = aluminum['Close']
     return close
 
